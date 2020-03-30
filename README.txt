@@ -1,11 +1,11 @@
 =======
-RTCTree
+rtctee
 =======
 
 Introduction
 ============
 
-RTCTree is a Python library providing an easy-to-use API for interacting
+rtctee is a Python library providing an easy-to-use API for interacting
 with running RT Components and RTM-based systems running on
 OpenRTM-aist-1. It allows developers to manage these systems from
 other programs without needing to learn the CORBA API. Components can be
@@ -24,11 +24,11 @@ This software is licensed under the GNU Lesser General Public License version 3
 Requirements
 ============
 
-RTCTree requires omniorb-py, including omniidl with the Python backend.
+rtctee requires omniorb-py, including omniidl with the Python backend.
 If you have installed OpenRTM-python, you will have these installed
 already. If not, you will need to install them manually.
 
-RTCTree requires Python 2.7. It will not function with an earlier version of
+rtctee requires Python 2.7. It will not function with an earlier version of
 Python. It has not been tested with Python 3 and it is likely that several
 changes will be necessary to make it function using this version of Python.
 
@@ -46,7 +46,7 @@ There are several methods of installation available:
  a. Install pip if it is not already installed.
     See https://pip.pypa.io/en/latest/installing/
 
- b. Execute the following command to install RTCTree::
+ b. Execute the following command to install rtctee::
 
     $ pip install rtctree
 
@@ -56,7 +56,7 @@ There are several methods of installation available:
 
  a. Extract the source, e.g. to a directory /home/blag/src/rtctree
 
- b. Run setup.py to install RTCTree to your default Python installation::
+ b. Run setup.py to install rtctee to your default Python installation::
 
     $ python setup.py install
 
@@ -74,7 +74,7 @@ The following environment variables are used:
 
   ``RTCTREE_NAMESERVERS``
     A list of name server addresses, separated by semi-colons, to parse
-    when creating the RTCTree. Each server in the list will be added to
+    when creating the rtctee. Each server in the list will be added to
     the tree. Optional.
 
 The only variable that should normally be set by the user is
@@ -320,7 +320,7 @@ source code for usage examples.
 API naming conventions
 ======================
 
-RTCTree follows the standard Python naming conventions as laid out in
+rtctee follows the standard Python naming conventions as laid out in
 PEP8_.
 
 Most importantly, the private, internal API functions begin with an
@@ -338,7 +338,7 @@ Further documentation and examples
 For further documentation, see the generated API documentation.
 
 For examples, see the rtshell set of utilities. These illustrate using
-RTCTree to perform most of the actions possible using RTSystemEditor.
+rtctee to perform most of the actions possible using RTSystemEditor.
 
 
 Repository

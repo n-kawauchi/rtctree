@@ -1060,8 +1060,13 @@ class Component(TreeNode):
 
         '''
         with self._mutex:
+            
             if not set_name in self.conf_sets:
-                raise exceptions.NoSuchConfSetError(set_name)
+                if set_name == "default":
+                    self._conf.get_active_configuration_set()
+                else:
+                    raise exceptions.NoSuchConfSetError(set_name)
+                
             self._conf.activate_configuration_set(set_name)
 
     def set_conf_set_value(self, set_name, param, value):

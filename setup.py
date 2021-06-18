@@ -138,8 +138,8 @@ build.sub_commands.append(('build_idl', None))
 install.sub_commands.append(('install_idl', None))
 
 
-setuptools.setup(name='rtctree',
-                 version='4.2.0',
+setuptools.setup(name='rtctree-aist',
+                 version='4.2.1',
                  description='API for interacting with running RT Components '
                  'and managing RTM-based systems.',
                  long_description='API for interacting with running RT '
@@ -156,6 +156,11 @@ setuptools.setup(name='rtctree',
                      'Natural Language :: English',
                      'Operating System :: OS Independent',
                      'Programming Language :: Python :: 2.7',
+                     'Programming Language :: Python :: 3.5',
+                     'Programming Language :: Python :: 3.6',
+                     'Programming Language :: Python :: 3.7',
+                     'Programming Language :: Python :: 3.8',
+                     'Programming Language :: Python :: 3.9',
                      'Topic :: Software Development',
                  ],
                  packages=setuptools.find_packages(),

@@ -144,9 +144,9 @@ setuptools.setup(name='rtctree-aist',
                  'and managing RTM-based systems.',
                  long_description='API for interacting with running RT '
                  'Components and managing RTM-based systems.',
-                 author='Geoffrey Biggs',
-                 author_email='geoffrey.biggs@aist.go.jp',
-                 url='http://github.com/gbiggs/rtctree',
+                 author='Noriaki Ando',
+                 author_email='n-ando@aist.go.jp',
+                 url='https://github.com/OpenRTM/rtctree',
                  license='LGPL3',
                  classifiers=[
                      'Development Status :: 5 - Production/Stable',

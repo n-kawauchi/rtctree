@@ -139,7 +139,7 @@ install.sub_commands.append(('install_idl', None))
 
 
 setuptools.setup(name='rtctree-aist',
-                 version='4.2.1',
+                 version='4.2.3',
                  description='API for interacting with running RT Components '
                  'and managing RTM-based systems.',
                  long_description='API for interacting with running RT '

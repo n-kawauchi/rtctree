@@ -26,6 +26,8 @@ from omniORB import CORBA
 
 from rtctree import exceptions
 from rtctree import NAMESERVERS_ENV_VAR, ORB_ARGS_ENV_VAR
+from rtctree import ORB_SSL_ENABLE_ENV_VAR, ORB_SSL_CAFILE_ENV_VAR, ORB_SSL_KEYFILE_ENV_VAR, ORB_SSL_KEYPASSWORD_ENV_VAR
+from rtctree import ORB_HTTP_ENABLE_ENV_VAR, ORB_HTTPS_CAFILE_ENV_VAR, ORB_HTTPS_KEYFILE_ENV_VAR, ORB_HTTPS_KEYPASSWORD_ENV_VAR
 from rtctree import utils
 from rtctree.node import TreeNode
 from rtctree.directory import Directory
@@ -312,6 +314,31 @@ class RTCTree(object):
             self._orb = orb
             self._orb_is_mine = False
         else:
+            if ORB_SSL_ENABLE_ENV_VAR in os.environ:
+                if os.environ[ORB_SSL_ENABLE_ENV_VAR] == 'YES':
+                    from omniORB import sslTP
+                    if ORB_SSL_CAFILE_ENV_VAR in os.environ:
+                        sslTP.certificate_authority_file(
+                            os.environ[ORB_SSL_CAFILE_ENV_VAR])
+                    if ORB_SSL_KEYFILE_ENV_VAR in os.environ:
+                        sslTP.key_file(os.environ[ORB_SSL_KEYFILE_ENV_VAR])
+                    if ORB_SSL_KEYPASSWORD_ENV_VAR in os.environ:
+                        sslTP.key_file_password(
+                            os.environ[ORB_SSL_KEYPASSWORD_ENV_VAR])
+
+            if ORB_HTTP_ENABLE_ENV_VAR in os.environ:
+                if os.environ[ORB_HTTP_ENABLE_ENV_VAR] == 'YES':
+                    from omniORB import httpTP
+                    if ORB_HTTPS_CAFILE_ENV_VAR in os.environ:
+                        httpTP.set_CA(
+                            os.environ[ORB_HTTPS_CAFILE_ENV_VAR], None)
+                    if ORB_HTTPS_KEYFILE_ENV_VAR in os.environ:
+                        password = None
+                        if ORB_HTTPS_KEYPASSWORD_ENV_VAR in os.environ:
+                            password = os.environ[ORB_HTTPS_KEYPASSWORD_ENV_VAR]
+                        httpTP.set_key(
+                            os.environ[ORB_HTTPS_KEYFILE_ENV_VAR], password)
+
             if ORB_ARGS_ENV_VAR in os.environ:
                 orb_args = os.environ[ORB_ARGS_ENV_VAR].split(';')
             else:

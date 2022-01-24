@@ -78,10 +78,33 @@ class NameServer(Directory):
             root_context = self._connect_to_naming_service(address)
             self._parse_context(root_context, orb, filter)
 
+    @staticmethod
+    def _parse_address(address):
+        protocols_m_str = {'iiop:': 'corbaloc:iiop:',
+                           'ssliop:': 'corbaloc:ssliop:',
+                           'diop:': 'corbaloc:diop:',
+                           'shmiop:': 'corbaloc:shmiop:',
+                           'htiop:': 'corbaloc:htiop:'}
+
+        for k, v in protocols_m_str.items():
+            if address.find(k) == 0:
+                return '{0}/NameService'.format(address.replace(k, v))
+
+        protocols_v_str = ['http://',
+                           'https://',
+                           'ws://',
+                           'wss://']
+
+        for protocol in protocols_v_str:
+            if address.find(protocol) == 0:
+                return '{0}#NameService'.format(address)
+
+        return 'corbaloc::{0}/NameService'.format(address)
+
     def _connect_to_naming_service(self, address):
         # Try to connect to a name server and get the root naming context.
         with self._mutex:
-            self._full_address = 'corbaloc::{0}/NameService'.format(address)
+            self._full_address = self._parse_address(address)
             try:
                 self._ns_obj = self._orb.string_to_object(self._full_address)
             except CORBA.ORB.InvalidName:

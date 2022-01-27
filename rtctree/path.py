@@ -64,7 +64,13 @@ def parse_path(path):
     (['comp0.rtc'], None)
 
     '''
-    bits = path.lstrip('/').split('/')
+    if path.find("#") < 0:
+        bits = path.lstrip('/').split('/')
+    else:
+        addr, name = path.lstrip('/').split('#')
+        bits = [addr]
+        bits.extend(name.split('/'))
+
     if not bits:
         raise exceptions.BadPathError(path)
 

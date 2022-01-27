@@ -290,7 +290,10 @@ class TreeNode(object):
                 if self._parent._name == '/':
                     return self._parent.full_path_str + self._name
                 else:
-                    return self._parent.full_path_str + '/' + self._name
+                    if self._parent._name.find('/') < 0:
+                        return self._parent.full_path_str + '/' + self._name
+                    else:
+                        return self._parent.full_path_str + '#' + self._name
             else:
                 return self._name
 

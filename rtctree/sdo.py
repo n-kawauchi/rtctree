@@ -91,7 +91,7 @@ class RTCLogger(OpenRTM__POA.Logger):
 
     def publish(self, record):
         ts = record.time.sec + record.time.nsec / 1e9
-        self._cb(self._tgt.name, ts, loggername, level, message)
+        self._cb(self._tgt.name, ts, record.loggername, record.level, record.message)
 
 
 # vim: set expandtab tabstop=8 shiftwidth=4 softtabstop=4 textwidth=79

@@ -175,6 +175,13 @@ class FailedToLoadModuleError(ManagerError):
         else:
             return 'Failed to load module: {0}'.format(self.args)
 
+class FailedToLoadableModuleError(ManagerError):
+    '''Error obtaining loadable RTC module list from a manager.'''
+    def __str__(self):
+        if len(self.args) == 1:
+            return 'Failed to load module: {0}'.format(self.args[0])
+        else:
+            return 'Failed to load module: {0}'.format(self.args)
 
 class FailedToUnloadModuleError(ManagerError):
     '''Error unloading a shared library from a manager.'''

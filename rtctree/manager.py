@@ -245,8 +245,20 @@ class Manager(TreeNode):
         '''
         with self._mutex:
             if self._obj.unload_module(path) != RTC.RTC_OK:
-                raise FailedToUnloadModuleError(path)
+                raise exceptions.FailedToUnloadModuleError(path)
 
+    def loadable_modules(self):
+        '''Show loadable RTC modules on the manager.
+
+        Call this function to obtain loadable RTC modules list on the manager.
+
+        @param path The path to the shared library.
+        @raises FailedToLoadableModuleError
+
+        '''
+        with self._mutex:
+            self._obj.loadable_modules()
+            
     @property
     def components(self):
         '''The list of components in this manager, if any.
